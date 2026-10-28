@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المستندات | منصة رَكِين</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="docs-dashboard-body">
+
+    <!-- القائمة الجانبية -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-moon logo-icon"></i>
+                <span class="logo-text">منصة رَكِين</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item" title="الرئيسية"><i class="fas fa-home"></i><span class="nav-text">الرئيسية</span></a>
+            <a href="gpa-calculator.html" class="nav-item" title="الحاسبة الأكاديمية"><i class="fas fa-calculator"></i><span class="nav-text">الحاسبة الأكاديمية</span></a>
+            <a href="calendar.html" class="nav-item" title="التقويم والجدول"><i class="fas fa-calendar-alt"></i><span class="nav-text">التقويم والجدول</span></a>
+            <a href="notes.html" class="nav-item" title="المذكرات والملخصات"><i class="fas fa-book"></i><span class="nav-text">المذكرات والملخصات</span></a>
+            
+            <a href="pomodoro.html" class="nav-item" title="مؤقت بومودورو"><i class="fas fa-stopwatch"></i><span class="nav-text">مؤقت بومودورو</span></a>
+            <a href="quizzes.html" class="nav-item" title="الألغاز والتحديات"><i class="fas fa-gamepad"></i><span class="nav-text">الألغاز والتحديات</span></a>
+            <a href="calculator.html" class="nav-item" title="الآلة الحاسبة"><i class="fas fa-square-root-variable"></i><span class="nav-text">الآلة الحاسبة</span></a>
+            <a href="math.html" class="nav-item" title="مدرسة الحساب"><i class="fas fa-graduation-cap"></i><span class="nav-text">مدرسة الحساب</span></a>
+            <a href="docs.html" class="nav-item active" title="المستندات"><i class="fas fa-file-alt"></i><span class="nav-text">المستندات</span></a>
+            <a href="courses.html" class="nav-item" title="الدورات"><i class="fab fa-youtube"></i><span class="nav-text">الدورات</span></a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="theme-toggle" title="تغيير المظهر">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="user-card" title="طالب">
+                <i class="fas fa-user-circle"></i>
+                <span class="user-name">طالب</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- شريط العودة والتنقل -->
+    <header class="docs-nav-bar">
+        <h2><i class="fas fa-file-alt" style="color: #e07046;"></i> مستندات رَكِين</h2>
+    </header>
+
+    <main class="docs-dashboard-container">
+        <!-- قسم إنشاء مستند جديد -->
+        <section class="create-doc-section">
+            <p class="section-title">بدء مستند جديد</p>
+            <a href="editor.html" class="doc-card new-doc-card" id="createNewDocBtn">
+                <div class="plus-icon"><i class="fas fa-plus"></i></div>
+            </a>
+            <span class="doc-card-label">مستند فارغ</span>
+        </section>
+
+        <!-- قسم المستندات الأخيرة -->
+        <section class="recent-docs-section">
+            <div class="recent-header">
+                <p class="section-title">المستندات الأخيرة</p>
+            </div>
+            <div class="docs-grid" id="docsGrid">
+                <!-- ينزل هنا كرت كل مستند تلقائياً -->
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script type="module" src="firebase.js"></script>
+</body>
+</html>
+

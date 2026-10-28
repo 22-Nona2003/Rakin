@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الآلة الحاسبة | منصة رَكِين</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="tool-page-body">
+
+    <!-- القائمة الجانبية -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-moon logo-icon"></i>
+                <span class="logo-text">منصة رَكِين</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item" title="الرئيسية"><i class="fas fa-home"></i><span class="nav-text">الرئيسية</span></a>
+            <a href="gpa-calculator.html" class="nav-item" title="الحاسبة الأكاديمية"><i class="fas fa-calculator"></i><span class="nav-text">الحاسبة الأكاديمية</span></a>
+            <a href="calendar.html" class="nav-item" title="التقويم والجدول"><i class="fas fa-calendar-alt"></i><span class="nav-text">التقويم والجدول</span></a>
+            <a href="notes.html" class="nav-item" title="المذكرات والملخصات"><i class="fas fa-book"></i><span class="nav-text">المذكرات والملخصات</span></a>
+            
+            <a href="pomodoro.html" class="nav-item" title="مؤقت بومودورو"><i class="fas fa-stopwatch"></i><span class="nav-text">مؤقت بومودورو</span></a>
+            <a href="quizzes.html" class="nav-item" title="الألغاز والتحديات"><i class="fas fa-gamepad"></i><span class="nav-text">الألغاز والتحديات</span></a>
+            <a href="calculator.html" class="nav-item active" title="الآلة الحاسبة"><i class="fas fa-square-root-variable"></i><span class="nav-text">الآلة الحاسبة</span></a>
+            <a href="math.html" class="nav-item" title="مدرسة الحساب"><i class="fas fa-graduation-cap"></i><span class="nav-text">مدرسة الحساب</span></a>
+            <a href="docs.html" class="nav-item" title="المستندات"><i class="fas fa-file-alt"></i><span class="nav-text">المستندات</span></a>
+            <a href="courses.html" class="nav-item" title="الدورات"><i class="fab fa-youtube"></i><span class="nav-text">الدورات</span></a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="theme-toggle" title="تغيير المظهر">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="user-card" title="طالب">
+                <i class="fas fa-user-circle"></i>
+                <span class="user-name">طالب</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="calc-wrapper">
+
+        <header class="page-header text-center">
+            <h1><i class="fas fa-square-root-variable"></i> الآلة الحاسبة العلمية</h1>
+            <p>احسب العمليات الأساسية والعلمية، من الجذور والمثلثات إلى اللوغاريتمات والأسس ⚡</p>
+        </header>
+
+        <div class="calc-grid scientific-grid">
+            <section class="glass-card calc-card scientific-calculator" aria-label="آلة حاسبة علمية">
+                <h3 class="calc-section-title"><i class="fas fa-calculator"></i> الآلة الحاسبة العلمية</h3>
+                <div class="calc-mode-row">
+                    <button class="calc-mode-btn" id="angleMode" type="button" aria-label="تغيير وحدة الزوايا">DEG</button>
+                    <span class="memory-status" id="memoryStatus">الذاكرة فارغة</span>
+                </div>
+                <div class="calc-screen">
+                    <div class="calc-history" id="calcHistory" aria-live="polite"></div>
+                    <input class="calc-display" id="calcDisplay" type="text" inputmode="decimal" value="0" autocomplete="off" aria-label="التعبير الحسابي والنتيجة">
+                </div>
+                <div class="calc-buttons scientific-buttons" id="calcButtons">
+                    <button class="calc-btn fn" data-action="memory-clear">MC</button>
+                    <button class="calc-btn fn" data-action="memory-recall">MR</button>
+                    <button class="calc-btn fn" data-action="memory-add">M+</button>
+                    <button class="calc-btn fn" data-action="memory-subtract">M−</button>
+                    <button class="calc-btn fn" data-action="clear">AC</button>
+
+                    <button class="calc-btn fn" data-insert="sin(">sin</button>
+                    <button class="calc-btn fn" data-insert="cos(">cos</button>
+                    <button class="calc-btn fn" data-insert="tan(">tan</button>
+                    <button class="calc-btn fn" data-insert="sqrt(">√</button>
+                    <button class="calc-btn fn" data-action="back"><i class="fas fa-delete-left"></i></button>
+
+                    <button class="calc-btn fn" data-insert="asin(">sin⁻¹</button>
+                    <button class="calc-btn fn" data-insert="acos(">cos⁻¹</button>
+                    <button class="calc-btn fn" data-insert="atan(">tan⁻¹</button>
+                    <button class="calc-btn fn" data-insert="log(">log</button>
+                    <button class="calc-btn fn" data-insert="ln(">ln</button>
+
+                    <button class="calc-btn fn" data-insert="π">π</button>
+                    <button class="calc-btn fn" data-insert="e">e</button>
+                    <button class="calc-btn fn" data-insert="^2">x²</button>
+                    <button class="calc-btn fn" data-insert="^">xʸ</button>
+                    <button class="calc-btn fn" data-insert="!">n!</button>
+
+                    <button class="calc-btn fn" data-insert="abs(">|x|</button>
+                    <button class="calc-btn fn" data-insert="(">(</button>
+                    <button class="calc-btn fn" data-insert=")">)</button>
+                    <button class="calc-btn fn" data-action="sign">±</button>
+                    <button class="calc-btn fn" data-insert="%">%</button>
+
+                    <button class="calc-btn" data-num="7">7</button>
+                    <button class="calc-btn" data-num="8">8</button>
+                    <button class="calc-btn" data-num="9">9</button>
+                    <button class="calc-btn op" data-op="÷">÷</button>
+                    <button class="calc-btn op" data-op="^">^</button>
+
+                    <button class="calc-btn" data-num="4">4</button>
+                    <button class="calc-btn" data-num="5">5</button>
+                    <button class="calc-btn" data-num="6">6</button>
+                    <button class="calc-btn op" data-op="×">×</button>
+                    <button class="calc-btn fn" data-insert="Ans">Ans</button>
+
+                    <button class="calc-btn" data-num="1">1</button>
+                    <button class="calc-btn" data-num="2">2</button>
+                    <button class="calc-btn" data-num="3">3</button>
+                    <button class="calc-btn op" data-op="−">−</button>
+                    <button class="calc-btn fn" data-insert="mod">mod</button>
+
+                    <button class="calc-btn" data-num="0">0</button>
+                    <button class="calc-btn" data-num=".">.</button>
+                    <button class="calc-btn op" data-op="+">+</button>
+                    <button class="calc-btn equals" data-action="equals">=</button>
+                    <button class="calc-btn fn" data-action="copy">نسخ</button>
+                </div>
+                <div class="calc-history-panel">
+                    <div class="calc-history-heading"><strong>السجل</strong><button type="button" id="clearCalcHistory">مسح السجل</button></div>
+                    <div class="calc-history-list" id="calcHistoryList"><p class="history-empty">عملياتك الأخيرة بتظهر هنا</p></div>
+                </div>
+            </section>
+
+            <aside class="glass-card calc-help-card">
+                <h3 class="calc-section-title"><i class="fas fa-lightbulb"></i> دليل سريع</h3>
+                <p>اكتب العملية في الشاشة أو استخدم الأزرار، ثم اضغط (=).</p>
+                <ul>
+                    <li><strong>sin / cos / tan</strong>: الزوايا، والوضع الافتراضي بالدرجات DEG. بدّلي إلى RAD للراديان.</li>
+                    <li><strong>sin⁻¹ / cos⁻¹ / tan⁻¹</strong>: الدوال العكسية.</li>
+                    <li><strong>log و ln</strong>: لوغاريتم عشري وطبيعي.</li>
+                    <li><strong>xʸ و n!</strong>: الأسس والمضروب للأعداد الصحيحة.</li>
+                    <li><strong>MC / MR / M+ / M−</strong>: مسح الذاكرة واسترجاع الرقم وإضافته أو طرحه منها.</li>
+                    <li><strong>Ans</strong>: استخدام آخر نتيجة في العملية الجديدة.</li>
+                </ul>
+                <p class="calc-example">مثال: <code>sin(30) + sqrt(81)</code> في وضع DEG يعطي 9.5</p>
+            </aside>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="calculator.js"></script>
+    <script type="module" src="firebase.js"></script>
+</body>
+</html>
+

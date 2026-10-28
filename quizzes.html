@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الألغاز والتحديات | منصة رَكِين</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="tool-page-body">
+
+    <!-- القائمة الجانبية -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-moon logo-icon"></i>
+                <span class="logo-text">منصة رَكِين</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item" title="الرئيسية"><i class="fas fa-home"></i><span class="nav-text">الرئيسية</span></a>
+            <a href="gpa-calculator.html" class="nav-item" title="الحاسبة الأكاديمية"><i class="fas fa-calculator"></i><span class="nav-text">الحاسبة الأكاديمية</span></a>
+            <a href="calendar.html" class="nav-item" title="التقويم والجدول"><i class="fas fa-calendar-alt"></i><span class="nav-text">التقويم والجدول</span></a>
+            <a href="notes.html" class="nav-item" title="المذكرات والملخصات"><i class="fas fa-book"></i><span class="nav-text">المذكرات والملخصات</span></a>
+            
+            <a href="pomodoro.html" class="nav-item" title="مؤقت بومودورو"><i class="fas fa-stopwatch"></i><span class="nav-text">مؤقت بومودورو</span></a>
+            <a href="quizzes.html" class="nav-item active" title="الألغاز والتحديات"><i class="fas fa-gamepad"></i><span class="nav-text">الألغاز والتحديات</span></a>
+            <a href="calculator.html" class="nav-item" title="الآلة الحاسبة"><i class="fas fa-square-root-variable"></i><span class="nav-text">الآلة الحاسبة</span></a>
+            <a href="math.html" class="nav-item" title="مدرسة الحساب"><i class="fas fa-graduation-cap"></i><span class="nav-text">مدرسة الحساب</span></a>
+            <a href="docs.html" class="nav-item" title="المستندات"><i class="fas fa-file-alt"></i><span class="nav-text">المستندات</span></a>
+            <a href="courses.html" class="nav-item" title="الدورات"><i class="fab fa-youtube"></i><span class="nav-text">الدورات</span></a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="theme-toggle" title="تغيير المظهر">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="user-card" title="طالب">
+                <i class="fas fa-user-circle"></i>
+                <span class="user-name">طالب</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="quiz-wrapper">
+
+        <header class="page-header text-center">
+            <h1><i class="fas fa-gamepad"></i> الألغاز والتحديات</h1>
+            <p>كسري الروتين بين الجلسات — خمس دقائق مرح لتنشيط الذهن 🎮</p>
+        </header>
+
+        <!-- اختيار اللعبة -->
+        <div class="game-menu" id="gameMenu">
+
+            <div class="game-card glass-card" data-game="memory">
+                <div class="game-icon">🧠</div>
+                <h3>ذاكرة رَكِين</h3>
+                <p>اقلبي البطاقات وجدي الثنائيات المتطابقة</p>
+                <span class="game-btn">العب الآن</span>
+            </div>
+
+            <div class="game-card glass-card" data-game="math">
+                <div class="game-icon">🧮</div>
+                <h3>تحدي حسابي سريع</h3>
+                <p>عمليات حسابية قبل انتهاء الوقت!</p>
+                <span class="game-btn">العب الآن</span>
+            </div>
+
+            <div class="game-card glass-card" data-game="word">
+                <div class="game-icon">🔤</div>
+                <h3>رتب الحروف</h3>
+                <p>كلمات مخلوطة — أعيدي ترتيبها بسرعة</p>
+                <span class="game-btn">العب الآن</span>
+            </div>
+
+            <div class="game-card glass-card" data-game="reaction">
+                <div class="game-icon">🎯</div>
+                <h3>ردة الفعل</h3>
+                <p>اضغط فور ظهور اللون الأخضر!</p>
+                <span class="game-btn">العب الآن</span>
+            </div>
+
+            <div class="game-card glass-card" data-game="pattern">
+                <div class="game-icon">🧩</div>
+                <h3>اكتشفي النمط</h3>
+                <p>أكمل التسلسل واختر الإجابة المناسبة</p>
+                <span class="game-btn">العب الآن</span>
+            </div>
+
+            <div class="game-card glass-card" data-game="oddone">
+                <div class="game-icon">👀</div>
+                <h3>اختر المختلف</h3>
+                <p>انتبهي للتفاصيل واكتشفي العنصر الغريب</p>
+                <span class="game-btn">العب الآن</span>
+            </div>
+
+        </div>
+
+        <!-- منطقة اللعب -->
+        <div class="game-area glass-card hidden" id="gameArea">
+            <div class="game-area-header">
+                <h3 id="gameTitle"></h3>
+                <button class="btn-close-game" id="closeGameBtn" title="العودة للقائمة"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="gameContent"></div>
+        </div>
+
+    </main>
+
+    <script src="app.js"></script>
+    <script src="quizzes.js?v=20261015-2"></script>
+    <script type="module" src="firebase.js"></script>
+</body>
+</html>
+

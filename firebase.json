@@ -1,0 +1,15 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      ".firebaserc",
+      "صوره لي",
+      "**/.*",
+      "**/node_modules/**",
+      "**/firebase-debug.log",
+      "**/firestore-debug.log"
+    ],
+    "site": "rakin-7670d"
+  }
+}

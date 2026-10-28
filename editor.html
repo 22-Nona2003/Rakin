@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محرر المستند | منصة رَكِين</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="doc-editor-body">
+
+    <!-- شريط أدوات تحرير المستند -->
+    <header class="doc-editor-header">
+        <div class="doc-top-bar">
+            <a href="docs.html" class="doc-logo-link"><i class="fas fa-file-alt"></i></a>
+            <div class="doc-title-wrapper">
+                <input type="text" id="docTitleInput" value="مستند بلا عنوان" placeholder="اسم المستند...">
+                <span class="save-status" id="docSaveStatus">جارٍ الحفظ...</span>
+            </div>
+            <button class="btn-save-doc" id="manualSaveDocBtn"><i class="fas fa-cloud-upload-alt"></i> حفظ</button>
+        </div>
+
+        <!-- قوائم وأدوات المحرر -->
+        <nav class="doc-menu-bar" id="docMenuBar" aria-label="قوائم المستند">
+            <div class="doc-menu-group">
+                <button class="doc-menu-trigger" type="button" data-doc-menu="file" aria-expanded="false">ملف <i class="fas fa-chevron-down"></i></button>
+                <div class="doc-menu-popover" data-doc-panel="file">
+                    <button class="doc-menu-action" id="btnSaveMenu"><i class="fas fa-cloud-arrow-up"></i><span>حفظ المستند</span></button>
+                    <button class="doc-menu-action" id="btnNewDocument"><i class="fas fa-file-circle-plus"></i><span>مستند جديد</span></button>
+                    <button class="doc-menu-action" id="btnBackToDocs"><i class="fas fa-folder-open"></i><span>العودة إلى مستنداتي</span></button>
+                    <button class="doc-menu-action" id="btnMakeCopy"><i class="fas fa-copy"></i><span>إنشاء نسخة</span></button>
+                    <button class="doc-menu-action" id="btnDownloadHtml"><i class="fas fa-download"></i><span>تنزيل نسخة HTML</span></button>
+                    <button class="doc-menu-action" id="btnRenameDocument"><i class="fas fa-pen"></i><span>إعادة تسمية</span></button>
+                    <button class="doc-menu-action" id="btnPrintMenu"><i class="fas fa-print"></i><span>طباعة</span><kbd>Ctrl + P</kbd></button>
+                </div>
+            </div>
+            <div class="doc-menu-group">
+                <button class="doc-menu-trigger" type="button" data-doc-menu="edit" aria-expanded="false">تعديل <i class="fas fa-chevron-down"></i></button>
+                <div class="doc-menu-popover" data-doc-panel="edit">
+                    <button class="doc-menu-action" id="btnSearch"><i class="fas fa-search"></i><span>بحث في المستند</span><kbd>Ctrl + F</kbd></button>
+                    <button class="doc-menu-action" id="btnUndo"><i class="fas fa-undo"></i><span>تراجع</span><kbd>Ctrl + Z</kbd></button>
+                    <button class="doc-menu-action" id="btnRedo"><i class="fas fa-redo"></i><span>إعادة</span><kbd>Ctrl + Y</kbd></button>
+                    <span class="doc-menu-separator"></span>
+                    <button class="doc-menu-action" id="btnCutText"><i class="fas fa-scissors"></i><span>قص</span><kbd>Ctrl + X</kbd></button>
+                    <button class="doc-menu-action" id="btnCopyText"><i class="fas fa-copy"></i><span>نسخ</span><kbd>Ctrl + C</kbd></button>
+                    <button class="doc-menu-action" id="btnPasteText"><i class="fas fa-clipboard"></i><span>لصق</span><kbd>Ctrl + V</kbd></button>
+                    <button class="doc-menu-action" id="btnSelectAllText"><i class="fas fa-object-group"></i><span>تحديد الكل</span><kbd>Ctrl + A</kbd></button>
+                    <button class="doc-menu-action" id="btnFindReplace"><i class="fas fa-magnifying-glass-arrow-right"></i><span>بحث واستبدال</span><kbd>Ctrl + H</kbd></button>
+                    <span class="doc-menu-separator"></span>
+                    <button class="doc-menu-action" id="btnClearFormat"><i class="fas fa-remove-format"></i><span>مسح التنسيق</span></button>
+                </div>
+            </div>
+            <div class="doc-menu-group">
+                <button class="doc-menu-trigger" type="button" data-doc-menu="view" aria-expanded="false">عرض <i class="fas fa-chevron-down"></i></button>
+                <div class="doc-menu-popover" data-doc-panel="view">
+                    <label class="doc-menu-control"><span>تكبير الصفحة</span><select class="tool-select" id="zoomSelect"><option value="100%">100%</option><option value="75%">75%</option><option value="125%">125%</option></select></label>
+                    <button class="doc-menu-action" id="btnToggleOutline"><i class="fas fa-list"></i><span>إظهار/إخفاء مخطط المستند</span></button>
+                    <button class="doc-menu-action" id="btnFullscreen"><i class="fas fa-expand"></i><span>ملء الشاشة</span></button>
+                </div>
+            </div>
+            <div class="doc-menu-group">
+                <button class="doc-menu-trigger" type="button" data-doc-menu="insert" aria-expanded="false">إدراج <i class="fas fa-chevron-down"></i></button>
+                <div class="doc-menu-popover" data-doc-panel="insert">
+                    <button class="doc-menu-action" id="btnInsertTable"><i class="fas fa-table"></i><span>جدول جديد</span></button>
+                    <button class="doc-menu-action" id="btnInsertImage"><i class="fas fa-image"></i><span>صورة</span></button>
+                    <button class="doc-menu-action" id="btnLink"><i class="fas fa-link"></i><span>رابط</span></button>
+                    <button class="doc-menu-action" id="btnAddComment"><i class="fas fa-comment-medical"></i><span>تعليق</span></button>
+                    <button class="doc-menu-action smart-chip-btn" id="btnSmartChip"><i class="fas fa-at"></i><span>ملصق ذكي</span></button>
+                    <button class="doc-menu-action" id="btnInsertEmoji"><i class="far fa-face-smile"></i><span>رمز تعبيري</span></button>
+                    <span class="doc-menu-separator"></span>
+                    <button class="doc-menu-action" id="btnHorizontalRule"><i class="fas fa-minus"></i><span>خط فاصل</span></button>
+                    <button class="doc-menu-action" id="btnAddPage"><i class="fas fa-file-circle-plus"></i><span>إضافة صفحة</span></button>
+                    <button class="doc-menu-action" id="btnPageBreak"><i class="fas fa-file-lines"></i><span>فاصل صفحة</span></button>
+                </div>
+            </div>
+            <div class="doc-menu-group">
+                <button class="doc-menu-trigger" type="button" data-doc-menu="format" aria-expanded="false">تنسيق <i class="fas fa-chevron-down"></i></button>
+                <div class="doc-menu-popover doc-format-popover" data-doc-panel="format">
+                    <label class="doc-menu-control"><span>نمط الفقرة</span><select class="tool-select" id="headingSelect"><option value="p">نص عادي</option><option value="h1">عنوان 1</option><option value="h2">عنوان 2</option><option value="h3">عنوان 3</option></select></label>
+                    <label class="doc-menu-control"><span>نوع الخط</span><select class="tool-select" id="fontSelect">
+                        <option value="Tajawal">Tajawal (تجوال)</option><option value="Cairo">Cairo (القاهرة)</option><option value="Amiri">Amiri (أميري النسخي)</option><option value="Aref Ruqaa">Aref Ruqaa (عارف رقعة)</option><option value="Reem Kufi">Reem Kufi (ريم كوفي)</option><option value="El Messiri">El Messiri (المسيري)</option><option value="Changa">Changa (شانغا)</option><option value="Lemonada">Lemonada (ليمونادة)</option><option value="Marhey">Marhey (مرحي)</option><option value="Arial">Arial</option><option value="Times New Roman">Times New Roman</option><option value="Courier New">Courier New</option>
+                    </select></label>
+                    <div class="doc-menu-control"><span>حجم الخط</span><div class="font-size-control"><button class="btn-size-step" id="btnDecreaseFont"><i class="fas fa-minus"></i></button><input type="text" id="fontSizeInput" value="17" class="font-size-input"><button class="btn-size-step" id="btnIncreaseFont"><i class="fas fa-plus"></i></button></div></div>
+                    <span class="doc-menu-separator"></span>
+                    <div class="doc-menu-button-row">
+                        <button class="tool-icon" id="btnBold" title="غامق"><i class="fas fa-bold"></i></button><button class="tool-icon" id="btnItalic" title="مائل"><i class="fas fa-italic"></i></button><button class="tool-icon" id="btnUnderline" title="تسطير"><i class="fas fa-underline"></i></button>
+                        <button class="tool-icon" id="btnSubscript" title="نص سفلي"><i class="fas fa-subscript"></i></button><button class="tool-icon" id="btnSuperscript" title="نص علوي"><i class="fas fa-superscript"></i></button>
+                        <input type="color" id="docTextColor" class="tool-color" title="لون النص" value="#000000"><input type="color" id="docBgColor" class="tool-color" title="لون التظليل" value="#ffffff">
+                    </div>
+                    <span class="doc-menu-separator"></span>
+                    <div class="doc-menu-button-row">
+                        <button class="tool-icon" id="btnAlignRight" title="محاذاة لليمين"><i class="fas fa-align-right"></i></button><button class="tool-icon" id="btnAlignCenter" title="محاذاة للوسط"><i class="fas fa-align-center"></i></button><button class="tool-icon" id="btnAlignLeft" title="محاذاة لليسار"><i class="fas fa-align-left"></i></button><button class="tool-icon" id="btnLineSpacing" title="تباعد الأسطر"><i class="fas fa-bars"></i></button>
+                    </div>
+                    <div class="doc-menu-button-row">
+                        <button class="tool-icon" id="btnChecklist" title="قائمة مهام"><i class="fas fa-tasks"></i></button><div class="custom-list-select-wrapper"><button class="tool-icon" id="btnUl" title="قائمة نقطية"><i class="fas fa-list-ul"></i></button><select class="tool-select-compact" id="ulStyleSelect" title="شكل النقاط"><option value="disc">دائرة ممتلئة</option><option value="circle">دائرة مفرغة</option><option value="square">مربع</option></select></div><button class="tool-icon" id="btnOl" title="قائمة رقمية"><i class="fas fa-list-ol"></i></button><button class="tool-icon" id="btnIndentRight" title="زيادة المسافة"><i class="fas fa-indent"></i></button><button class="tool-icon" id="btnIndentLeft" title="إنقاص المسافة"><i class="fas fa-outdent"></i></button><button class="tool-icon" id="btnTextDirection" title="تبديل اتجاه الكتابة"><i class="fas fa-right-left"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="doc-menu-group">
+                <button class="doc-menu-trigger" type="button" data-doc-menu="tools" aria-expanded="false">أدوات <i class="fas fa-chevron-down"></i></button>
+                <div class="doc-menu-popover" data-doc-panel="tools">
+                    <button class="doc-menu-action" id="btnSpelling"><i class="fas fa-check-double"></i><span>تدقيق إملائي</span></button>
+                    <button class="doc-menu-action" id="btnFormatPainter"><i class="fas fa-paint-roller"></i><span>نسخ التنسيق</span></button>
+                    <div class="doc-menu-action doc-menu-word-count"><i class="fas fa-align-left"></i><span id="wordCount">0 كلمة · 0 حرف</span></div>
+                </div>
+            </div>
+            <div class="doc-menu-group">
+                <button class="doc-menu-trigger" type="button" data-doc-menu="extensions" aria-expanded="false">إضافات <i class="fas fa-chevron-down"></i></button>
+                <div class="doc-menu-popover" data-doc-panel="extensions">
+                    <div class="doc-menu-action doc-menu-disabled"><i class="fas fa-puzzle-piece"></i><span>لا توجد إضافات متصلة حاليًا</span></div>
+                </div>
+            </div>
+            <div class="doc-menu-group">
+                <button class="doc-menu-trigger" type="button" data-doc-menu="help" aria-expanded="false">مساعدة <i class="fas fa-chevron-down"></i></button>
+                <div class="doc-menu-popover" data-doc-panel="help">
+                    <button class="doc-menu-action" id="btnEditorShortcuts"><i class="fas fa-keyboard"></i><span>اختصارات لوحة المفاتيح</span></button>
+                    <button class="doc-menu-action" id="btnAboutRakin"><i class="fas fa-circle-info"></i><span>عن محرر ركين</span></button>
+                </div>
+            </div>
+            <div class="doc-menu-group" id="docTableMenuGroup" hidden>
+                <button class="doc-menu-trigger" type="button" data-doc-menu="table" aria-expanded="false">جدول <i class="fas fa-chevron-down"></i></button>
+                <div class="doc-menu-popover doc-table-popover" data-doc-panel="table">
+                    <div class="table-context-tools is-visible" id="tableContextTools" aria-label="أدوات الجدول">
+                        <button type="button" data-table-action="row-before" title="إضافة صف أعلى"><i class="fas fa-arrow-up"></i><span>صف أعلى</span></button>
+                        <button type="button" data-table-action="row-after" title="إضافة صف أسفل"><i class="fas fa-arrow-down"></i><span>صف أسفل</span></button>
+                        <button type="button" data-table-action="column-before" title="إضافة عمود قبل الحالي"><i class="fas fa-arrow-right"></i><span>عمود قبل</span></button>
+                        <button type="button" data-table-action="column-after" title="إضافة عمود بعد الحالي"><i class="fas fa-arrow-left"></i><span>عمود بعد</span></button>
+                        <button type="button" data-table-action="delete-row" title="حذف الصف المحدد"><i class="fas fa-minus"></i><span>حذف صف</span></button>
+                        <button type="button" data-table-action="delete-column" title="حذف العمود المحدد"><i class="fas fa-columns"></i><span>حذف عمود</span></button>
+                        <button type="button" data-table-action="delete-cell" title="حذف الخلية المحددة"><i class="fas fa-border-none"></i><span>حذف خلية</span></button>
+                        <button type="button" data-table-action="delete-table" title="حذف الجدول"><i class="fas fa-trash"></i><span>حذف الجدول</span></button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="doc-toolbar" id="docQuickToolbar" aria-label="أدوات سريعة">
+            <button class="tool-icon" id="btnUndoQuick" title="تراجع"><i class="fas fa-undo"></i></button>
+            <button class="tool-icon" id="btnRedoQuick" title="إعادة"><i class="fas fa-redo"></i></button>
+            <button class="tool-icon" id="btnPrint" title="طباعة" onclick="window.print()"><i class="fas fa-print"></i></button>
+            <span class="toolbar-divider"></span>
+            <select class="tool-select" id="quickHeadingSelect" aria-label="نمط الفقرة"><option value="p">نص عادي</option><option value="h1">عنوان 1</option><option value="h2">عنوان 2</option><option value="h3">عنوان 3</option></select>
+            <div class="font-size-control"><button class="btn-size-step" id="btnDecreaseFontQuick"><i class="fas fa-minus"></i></button><input type="text" id="fontSizeInputQuick" value="17" class="font-size-input" aria-label="حجم الخط"><button class="btn-size-step" id="btnIncreaseFontQuick"><i class="fas fa-plus"></i></button></div>
+            <span class="toolbar-divider"></span>
+            <button class="tool-icon" id="btnBoldQuick" title="غامق"><i class="fas fa-bold"></i></button><button class="tool-icon" id="btnItalicQuick" title="مائل"><i class="fas fa-italic"></i></button><button class="tool-icon" id="btnUnderlineQuick" title="تسطير"><i class="fas fa-underline"></i></button>
+        </div>
+    </header>
+
+    <aside class="doc-outline" id="docOutline" aria-label="فهرس عناوين المستند">
+        <div class="doc-outline-header">
+            <strong><i class="fas fa-list"></i> مخطط المستند</strong>
+            <button type="button" id="toggleDocOutline" class="outline-toggle" aria-expanded="true" title="طي أو إظهار المخطط"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <nav id="docOutlineItems" class="doc-outline-items"><p class="outline-empty">أضف عنوانًا من قائمة «نص عادي» ليظهر هنا.</p></nav>
+    </aside>
+
+    <!-- منطقة الورقة A4 -->
+    <div class="paper-canvas-wrapper">
+        <div class="doc-pages" id="docPages">
+            <div class="a4-page" id="docPageEditor" contenteditable="true" placeholder="ابدأي كتابة نصك هنا..."></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script type="module" src="firebase.js"></script>
+</body>
+</html>
+

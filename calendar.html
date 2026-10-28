@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التقويم والجدول الأكاديمي | منصة رَكِين</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="tool-page-body">
+
+        <!-- القائمة الجانبية -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-moon logo-icon"></i>
+                <span class="logo-text">منصة رَكِين</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item" title="الرئيسية"><i class="fas fa-home"></i><span class="nav-text">الرئيسية</span></a>
+            <a href="gpa-calculator.html" class="nav-item" title="الحاسبة الأكاديمية"><i class="fas fa-calculator"></i><span class="nav-text">الحاسبة الأكاديمية</span></a>
+            <a href="calendar.html" class="nav-item active" title="التقويم والجدول"><i class="fas fa-calendar-alt"></i><span class="nav-text">التقويم والجدول</span></a>
+            <a href="notes.html" class="nav-item" title="المذكرات والملخصات"><i class="fas fa-book"></i><span class="nav-text">المذكرات والملخصات</span></a>
+            
+            <a href="pomodoro.html" class="nav-item" title="مؤقت بومودورو"><i class="fas fa-stopwatch"></i><span class="nav-text">مؤقت بومودورو</span></a>
+            <a href="quizzes.html" class="nav-item" title="الألغاز والتحديات"><i class="fas fa-gamepad"></i><span class="nav-text">الألغاز والتحديات</span></a>
+            <a href="calculator.html" class="nav-item" title="الآلة الحاسبة"><i class="fas fa-square-root-variable"></i><span class="nav-text">الآلة الحاسبة</span></a>
+            <a href="math.html" class="nav-item" title="مدرسة الحساب"><i class="fas fa-graduation-cap"></i><span class="nav-text">مدرسة الحساب</span></a>
+            <a href="docs.html" class="nav-item" title="المستندات"><i class="fas fa-file-alt"></i><span class="nav-text">المستندات</span></a>
+            <a href="courses.html" class="nav-item" title="الدورات"><i class="fab fa-youtube"></i><span class="nav-text">الدورات</span></a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="theme-toggle" title="تغيير المظهر">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="user-card" title="طالب">
+                <i class="fas fa-user-circle"></i>
+                <span class="user-name">طالب</span>
+            </div>
+        </div>
+    </aside>
+
+
+    <main class="calendar-page-wrapper">
+        
+        <header class="page-header text-center">
+            <h1><i class="fas fa-calendar-alt"></i> التقويم والجدول الأكاديمي</h1>
+            <p>نظمي مواعيد الاختبارات، وتسليم التكاليف، والجدول الدراسي في مكان واحد.</p>
+        </header>
+
+        <div class="calendar-grid-container">
+            
+            <section class="calendar-form-card glass-card">
+                <h3><i class="fas fa-plus-circle"></i> إضافة موعد أو تكليف</h3>
+                
+                <form id="eventForm" class="event-form">
+                    <div class="form-group">
+                        <label for="eventTitle">عنوان الموعد / المادة:</label>
+                        <input type="text" id="eventTitle" placeholder="مثال: اختبار منتصف الفصل - برمجة" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventDate">التاريخ:</label>
+                            <input type="date" id="eventDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventType">نوع الموعد:</label>
+                            <select id="eventType">
+                                <option value="exam">🎯 اختبار</option>
+                                <option value="assignment">📝 تسليم واجب / مشروع</option>
+                                <option value="lecture">📚 محاضرة هامة</option>
+                                <option value="other">📌 أخرى</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary full-width">
+                        <i class="fas fa-save"></i> حفظ في التقويم
+                    </button>
+                </form>
+            </section>
+
+            <section class="calendar-display-section">
+                
+                <div class="calendar-list-card glass-card mb-20">
+                    <div class="section-sub-header">
+                        <h3 class="upcoming-title"><i class="fas fa-clock"></i> المواعيد القادمة</h3>
+                        <span class="events-count upcoming-badge" id="upcomingCount">0 مواعيد</span>
+                    </div>
+                    <div class="events-list" id="upcomingEventsList">
+                        </div>
+                </div>
+
+                <div class="calendar-list-card glass-card expired-card">
+                    <div class="section-sub-header">
+                        <h3 class="expired-title"><i class="fas fa-history"></i> المواعيد المنتهية</h3>
+                        <span class="events-count expired-badge" id="expiredCount">0 مواعيد</span>
+                    </div>
+                    <div class="events-list" id="expiredEventsList">
+                        </div>
+                </div>
+
+            </section>
+
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script type="module" src="firebase.js"></script>
+</body>
+</html>
+

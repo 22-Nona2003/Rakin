@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدرسة الحساب | منصة رَكِين</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="tool-page-body">
+
+    <!-- القائمة الجانبية (انسخيها من math.html القديم كما هي) -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-moon logo-icon"></i>
+                <span class="logo-text">منصة رَكِين</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item" title="الرئيسية"><i class="fas fa-home"></i><span class="nav-text">الرئيسية</span></a>
+            <a href="gpa-calculator.html" class="nav-item" title="الحاسبة الأكاديمية"><i class="fas fa-calculator"></i><span class="nav-text">الحاسبة الأكاديمية</span></a>
+            <a href="calendar.html" class="nav-item" title="التقويم والجدول"><i class="fas fa-calendar-alt"></i><span class="nav-text">التقويم والجدول</span></a>
+            <a href="notes.html" class="nav-item" title="المذكرات والملخصات"><i class="fas fa-book"></i><span class="nav-text">المذكرات والملخصات</span></a>
+            
+            <a href="pomodoro.html" class="nav-item" title="مؤقت بومودورو"><i class="fas fa-stopwatch"></i><span class="nav-text">مؤقت بومودورو</span></a>
+            <a href="quizzes.html" class="nav-item" title="الألغاز والتحديات"><i class="fas fa-gamepad"></i><span class="nav-text">الألغاز والتحديات</span></a>
+            <a href="calculator.html" class="nav-item" title="الآلة الحاسبة"><i class="fas fa-square-root-variable"></i><span class="nav-text">الآلة الحاسبة</span></a>
+            <a href="math.html" class="nav-item active" title="مدرسة الحساب"><i class="fas fa-graduation-cap"></i><span class="nav-text">مدرسة الحساب</span></a>
+            <a href="docs.html" class="nav-item" title="المستندات"><i class="fas fa-file-alt"></i><span class="nav-text">المستندات</span></a>
+            <a href="courses.html" class="nav-item" title="الدورات"><i class="fab fa-youtube"></i><span class="nav-text">الدورات</span></a>
+        </nav>
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="theme-toggle" title="تغيير المظهر"><i class="fas fa-moon"></i></button>
+            <div class="user-card" title="طالب"><i class="fas fa-user-circle"></i><span class="user-name">طالب</span></div>
+        </div>
+    </aside>
+
+    <main class="math-wrapper">
+
+        <header class="page-header text-center">
+            <h1><i class="fas fa-graduation-cap"></i> مدرسة الحساب</h1>
+            <p>تعلّم الحساب خطوة بخطوة، وتدرّب على الحيل الذهنية دون آلة حاسبة 🎓</p>
+        </header>
+
+        <!-- 🏠 قائمة الأقسام (الرئيسية للمدرسة) -->
+        <section id="mathHome" class="glass-card subjects-card">
+            <h3 class="calc-section-title"><i class="fas fa-graduation-cap"></i> اختر القسم:</h3>
+            <div class="subject-grid">
+                <div class="subject-card" data-sub="table"><span class="sc-icon">📊</span><h4>جدول الضرب</h4><p>تدرّب على الجداول وتذكّرها بسهولة</p></div>
+                <div class="subject-card" data-sub="mul"><span class="sc-icon">✖️</span><h4>الضرب</h4><p>فكّك الأعداد واضربها خطوة بخطوة</p></div>
+                <div class="subject-card" data-sub="div"><span class="sc-icon">➗</span><h4>القسمة</h4><p>تعلّم القسمة المطولة خطوة بخطوة</p></div>
+                <div class="subject-card" data-sub="add"><span class="sc-icon">➕</span><h4>الجمع</h4><p>اجمع العشرات ثم الآحاد</p></div>
+                <div class="subject-card" data-sub="sub"><span class="sc-icon">➖</span><h4>الطرح</h4><p>اطرحي خطوة بخطوة وبسهولة</p></div>
+                <div class="subject-card" data-sub="mental"><span class="sc-icon">🧠</span><h4>حيل الحساب الذهني</h4><p>تدرّب على طرق سريعة دون آلة حاسبة</p></div>
+            </div>
+        </section>
+
+        <!-- ══════════ قسم جدول الضرب ══════════ -->
+        <section id="sub-table" class="subject-panel hidden">
+            <button class="btn-back-sub"><i class="fas fa-arrow-right"></i> رجوع للأقسام</button>
+            <div class="glass-card">
+                <h3 class="calc-section-title">📊 جدول الضرب — المدرسي</h3>
+                <div class="table-controls">
+                    <label>اختر الجدول:</label>
+                    <select id="tableSelect" class="custom-select"></select>
+                    <button class="pomo-btn start" id="hideAnswersBtn"><i class="fas fa-eye-slash"></i> وضع الحفظ (إخفاء النواتج)</button>
+                </div>
+                <div class="school-table" id="schoolTable"></div>
+                <div class="table-quiz hidden" id="tableQuiz">
+                    <p class="trick-q"><span id="tableQuizQ"></span> = ؟</p>
+                    <div class="trick-answer-row">
+                        <input type="number" id="tableQuizAnswer" placeholder="الجواب">
+                        <button class="pomo-btn start" id="tableQuizCheck">تحقق</button>
+                    </div>
+                    <p class="game-feedback" id="tableQuizFeedback"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ قسم الضرب ══════════ -->
+        <section id="sub-mul" class="subject-panel hidden">
+            <button class="btn-back-sub"><i class="fas fa-arrow-right"></i> رجوع للأقسام</button>
+            <div class="glass-card">
+                <h3 class="calc-section-title">✖️ الضرب — الطريقة الوحيدة اللي تحتاجينها</h3>
+                <div class="golden-rule">
+                    <span class="gr-badge">القاعدة الذهبية</span>
+                    <p><strong>فكّك الرقم ← اضرب الأجزاء ← اجمع</strong><br>
+                    وإذا كان فيه صفر بالنهاية: اضرب دون الصفر ثم <strong>أعد الصفر</strong></p>
+                </div>
+
+                <div class="rule-block">
+                    <h5>الحالة 1: صفر بالنهاية (زي سؤالك!)</h5>
+                    <div class="rule-example">
+                        <p>50 × 6 → تجاهلي الصفر: <strong>5 × 6 = 30</strong> → أعد الصفر → <strong class="ans">300</strong> ✅</p>
+                        <p>400 × 7 → 4 × 7 = 28 → أعد الصفرين → <strong class="ans">2800</strong> ✅</p>
+                    </div>
+                </div>
+
+                <div class="rule-block">
+                    <h5>الحالة 2: رقم عادي × رقم</h5>
+                    <div class="rule-example">
+                        <p>23 × 4 → فكّكي: (20 × 4) + (3 × 4) → 80 + 12 → <strong class="ans">92</strong> ✅</p>
+                    </div>
+                </div>
+
+                <div class="rule-block">
+                    <h5>الحالة 3: رقمين × رقمين (أصعب حالة — ونفس الفكرة!)</h5>
+                    <div class="rule-example">
+                        <p>23 × 12 → فكّكي 12: (23 × 10) + (23 × 2) → 230 + 46 → <strong class="ans">276</strong> ✅</p>
+                        <p>45 × 6 → (40 × 6) + (5 × 6) → 240 + 30 → <strong class="ans">270</strong> ✅</p>
+                    </div>
+                </div>
+
+                <div class="practice-box">
+                    <p><strong>🎯 درّبي نفسك — نفس الطريقة بكل مرة:</strong></p>
+                    <span class="practice-q" id="mulQ"></span>
+                    <input type="number" id="mulAnswer" placeholder="الجواب">
+                    <button class="pomo-btn start" id="mulCheck">تحقق</button>
+                    <span class="practice-fb" id="mulFb"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ قسم القسمة ══════════ -->
+        <section id="sub-div" class="subject-panel hidden">
+            <button class="btn-back-sub"><i class="fas fa-arrow-right"></i> رجوع للأقسام</button>
+            <div class="glass-card">
+                <h3 class="calc-section-title">➗ القسمة — القسمة المطولة</h3>
+
+                <div class="golden-rule">
+                    <span class="gr-badge">الفكرة</span>
+                    <p>القسمة عكس الضرب! 24 ÷ 6 = 4 <strong>لأن</strong> 6 × 4 = 24 — إذا نسيتِ جواب، تحققي بالضرب</p>
+                </div>
+
+                <div class="rule-block">
+                    <h5>طريقة القسمة المطولة (نفسها بأي رقم):</h5>
+                    <div class="rule-example">
+                        <p>عندك 156 ÷ 6:</p>
+                        <p>1️⃣ خذ أرقام المقسوم من اليسار حتى يصبح الرقم أكبر من 6 ← <strong>15</strong></p>
+                        <p>2️⃣ 6 يدخل في 15 <strong>مرتين</strong> (2×6=12) ← هذا أول رقم بالناتج</p>
+                        <p>3️⃣ اطرحي: 15−12 = <strong>3</strong></p>
+                        <p>4️⃣ نزّلي الرقم الجاي (6) بجانب الـ 3 ← يصير <strong>36</strong></p>
+                        <p>5️⃣ 6 يدخل في 36 <strong>6 مرات</strong> (6×6=36) ← ثاني رقم بالناتج</p>
+                        <p class="ans">الناتج: 26 ✅</p>
+                    </div>
+                </div>
+
+                <div class="solver-box">
+                    <h5>🪄 جرّب بنفسك — اكتب مسألة قسمة وشاهد الخطوات:</h5>
+                    <div class="div-inputs">
+                        <input type="number" id="divDividend" placeholder="المقسوم">
+                        <span class="div-sign">÷</span>
+                        <input type="number" id="divDivisor" placeholder="المقسوم عليه">
+                        <button class="pomo-btn start" id="divSolveBtn">اعرضي الحل</button>
+                    </div>
+                    <div class="div-steps-list" id="divStepsList"></div>
+                </div>
+
+                <div class="practice-box">
+                    <p><strong>🎯 تدريب قسمة كاملة:</strong></p>
+                    <span class="practice-q" id="divQ"></span>
+                    <input type="number" id="divAnswer" placeholder="الجواب">
+                    <button class="pomo-btn start" id="divCheck">تحقق</button>
+                    <span class="practice-fb" id="divFb"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ قسم الجمع ══════════ -->
+        <section id="sub-add" class="subject-panel hidden">
+            <button class="btn-back-sub"><i class="fas fa-arrow-right"></i> رجوع للأقسام</button>
+            <div class="glass-card">
+                <h3 class="calc-section-title">➕ الجمع — طريقة "عشرات ثم آحاد"</h3>
+
+                <div class="golden-rule">
+                    <span class="gr-badge">الطريقة</span>
+                    <p>لا تجمع الرقمين دفعة واحدة! أضف <strong>العشرات</strong> أولاً، بعدين <strong>الآحاد</strong></p>
+                </div>
+
+                <div class="rule-example">
+                    <p>47 + 38 → أضف العشرات: 47 + 30 = 77 → بعدين الآحاد: 77 + 8 → <strong class="ans">85</strong> ✅</p>
+                    <p>56 + 27 → 56 + 20 = 76 → 76 + 7 → <strong class="ans">83</strong> ✅</p>
+                    <p>مفيده خصوصاً بالأرقام الكبيرة: 123 + 45 → 123 + 40 = 163 → +5 → <strong class="ans">168</strong> ✅</p>
+                </div>
+
+                <div class="practice-box">
+                    <p><strong>🎯 درّبي نفسك:</strong></p>
+                    <span class="practice-q" id="addQ"></span>
+                    <input type="number" id="addAnswer" placeholder="الجواب">
+                    <button class="pomo-btn start" id="addCheck">تحقق</button>
+                    <span class="practice-fb" id="addFb"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ قسم الطرح ══════════ -->
+        <section id="sub-sub" class="subject-panel hidden">
+            <button class="btn-back-sub"><i class="fas fa-arrow-right"></i> رجوع للأقسام</button>
+            <div class="glass-card">
+                <h3 class="calc-section-title">➖ الطرح — طريقة "خطوة خطوة"</h3>
+
+                <div class="golden-rule">
+                    <span class="gr-badge">الطريقة</span>
+                    <p>لا تطرحين الرقم كله دفعة وحدة! اطرحي <strong>العشرات</strong> أولاً ثم <strong>الآحاد</strong></p>
+                </div>
+
+                <div class="rule-example">
+                    <p>83 − 29 → اطرحي العشرات: 83 − 20 = 63 → بعدين الآحاد: 63 − 9 → <strong class="ans">54</strong> ✅</p>
+                    <p>وفيه حيلة إضافية لما يكون الرقم قريب من 100: 100 − 68 → من 68 لـ 70 ناقص 2، ومن 70 لـ 100 ناقص 30 → 2+30 → <strong class="ans">32</strong> ✅</p>
+                </div>
+
+                <div class="practice-box">
+                    <p><strong>🎯 درّبي نفسك:</strong></p>
+                    <span class="practice-q" id="subQ"></span>
+                    <input type="number" id="subAnswer" placeholder="الجواب">
+                    <button class="pomo-btn start" id="subCheck">تحقق</button>
+                    <span class="practice-fb" id="subFb"></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="sub-mental" class="subject-panel hidden">
+            <button class="btn-back-sub"><i class="fas fa-arrow-right"></i> رجوع للأقسام</button>
+            <div class="glass-card mental-school-card">
+                <h3 class="calc-section-title"><i class="fas fa-brain"></i> حيل ذهنية بدون آلة حاسبة</h3>
+                <p class="mental-intro">اختر حيلة، وافهم خطواتها، ثم حل التحدي ذهنيًا. لا تحتاج إلى آلة حاسبة 🧠</p>
+                <div class="mental-trick-grid" id="mentalTrickGrid"></div>
+                <article class="mental-lesson hidden" id="mentalLesson" aria-live="polite">
+                    <h4 id="mentalLessonTitle"></h4>
+                    <p id="mentalLessonRule"></p>
+                    <div class="mental-worked-example" id="mentalWorkedExample"></div>
+                    <div class="mental-challenge">
+                        <strong>تحدي ذهني</strong>
+                        <p id="mentalQuestion"></p>
+                        <div class="mental-answer-row">
+                            <input type="number" id="mentalAnswer" inputmode="numeric" placeholder="اكتب الناتج ذهنيًا">
+                            <button class="pomo-btn start" id="mentalCheck">تحققي</button>
+                            <button class="btn-secondary" id="mentalNext">سؤال جديد</button>
+                        </div>
+                        <p class="mental-feedback" id="mentalFeedback" role="status"></p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="math.js"></script>
+    <script type="module" src="firebase.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دفتر المذكرات والرسم | منصة رَكِين</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="tool-page-body">
+
+    <!-- القائمة الجانبية -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-moon logo-icon"></i>
+                <span class="logo-text">منصة رَكِين</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item" title="الرئيسية"><i class="fas fa-home"></i><span class="nav-text">الرئيسية</span></a>
+            <a href="gpa-calculator.html" class="nav-item" title="الحاسبة الأكاديمية"><i class="fas fa-calculator"></i><span class="nav-text">الحاسبة الأكاديمية</span></a>
+            <a href="calendar.html" class="nav-item" title="التقويم والجدول"><i class="fas fa-calendar-alt"></i><span class="nav-text">التقويم والجدول</span></a>
+            <a href="notes.html" class="nav-item active" title="المذكرات والملخصات"><i class="fas fa-book"></i><span class="nav-text">المذكرات والملخصات</span></a>
+            
+            <a href="pomodoro.html" class="nav-item" title="مؤقت بومودورو"><i class="fas fa-stopwatch"></i><span class="nav-text">مؤقت بومودورو</span></a>
+            <a href="quizzes.html" class="nav-item" title="الألغاز والتحديات"><i class="fas fa-gamepad"></i><span class="nav-text">الألغاز والتحديات</span></a>
+            <a href="calculator.html" class="nav-item" title="الآلة الحاسبة"><i class="fas fa-square-root-variable"></i><span class="nav-text">الآلة الحاسبة</span></a>
+            <a href="math.html" class="nav-item" title="مدرسة الحساب"><i class="fas fa-graduation-cap"></i><span class="nav-text">مدرسة الحساب</span></a>
+            <a href="docs.html" class="nav-item" title="المستندات"><i class="fas fa-file-alt"></i><span class="nav-text">المستندات</span></a>
+            <a href="courses.html" class="nav-item" title="الدورات"><i class="fab fa-youtube"></i><span class="nav-text">الدورات</span></a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="theme-toggle" title="تغيير المظهر">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="user-card" title="طالب">
+                <i class="fas fa-user-circle"></i>
+                <span class="user-name">طالب</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="notes-page-wrapper">
+
+        <header class="page-header text-center">
+            <h1><i class="fas fa-book"></i> دفتر المذكرات والرسم</h1>
+            <p>اكتب وارسم وزيّن دفترك بالملصقات بحرية ✨</p>
+        </header>
+
+        <!-- شريط أدوات الدفتر -->
+        <div class="notes-toolbar glass-card">
+            <button type="button" id="penBtn" class="note-tool active" title="قلم"><i class="fas fa-pen"></i></button>
+            <button type="button" id="textBtn" class="note-tool" title="اكتب في الصفحة كاملة" aria-label="الكتابة في الصفحة"><i class="fas fa-font"></i></button>
+            <button type="button" id="highlighterBtn" class="note-tool" title="قلم تظليل"><i class="fas fa-highlighter"></i></button>
+            <button type="button" id="eraserBtn" class="note-tool" title="ممحاة"><i class="fas fa-eraser"></i></button>
+
+            <input type="color" id="colorPicker" value="#e07046" title="اختيار اللون">
+            <input type="range" id="lineWidth" min="1" max="15" value="3" title="سماكة الخط">
+
+            <span class="toolbar-divider"></span>
+
+            <select id="paperType" class="custom-select" title="نوع الورقة">
+                <option value="plain">📄 ورقة سادة</option>
+                <option value="lined">📝 ورقة مسطرة</option>
+                <option value="grid">🔲 ورقة مربعات</option>
+                <option value="dotted">⚪ ورقة منقطة</option>
+            </select>
+
+            <span class="toolbar-divider"></span>
+
+            <button type="button" id="addStickerBtn" class="note-tool" title="ملصق ملاحظة لاصق"><i class="fas fa-sticky-note"></i></button>
+            <button type="button" id="openStickersPanelBtn" class="note-tool" title="استيكرات زخرفية (نجوم وكيوت)"><i class="fas fa-star"></i></button>
+            <button type="button" id="clearCanvasBtn" class="note-tool danger" title="مسح الرسم"><i class="fas fa-trash-alt"></i></button>
+        </div>
+
+       <!-- الورقة الرقمية -->
+<div class="paper-area glass-card">
+    <div id="paperContainer" class="digital-paper plain-paper">
+        <canvas id="drawingCanvas" aria-label="مساحة الرسم"></canvas>
+        <div id="stickersContainer"></div>
+        <div id="typingSurface" class="typing-surface" contenteditable="false" role="textbox" aria-label="اكتب ملاحظتك في الصفحة" data-placeholder="ابدأ الكتابة هنا..."></div>
+    </div>
+</div>
+
+    </main>
+
+    <!-- لوحة الاستيكرات الزخرفية -->
+    <div id="stickersPanel" class="stickers-panel hidden">
+        <div class="stickers-panel-header">
+            <span>✨ اختر ملصقًا واضغط عليه</span>
+            <button type="button" id="closeStickersPanel">&times;</button>
+        </div>
+        <div class="stickers-grid">
+            <span class="sticker-item">⭐</span>
+            <span class="sticker-item">🌟</span>
+            <span class="sticker-item">✨</span>
+            <span class="sticker-item">🌙</span>
+            <span class="sticker-item">💫</span>
+            <span class="sticker-item">🌈</span>
+            <span class="sticker-item">☁️</span>
+            <span class="sticker-item">🌸</span>
+            <span class="sticker-item">🌷</span>
+            <span class="sticker-item">🎀</span>
+            <span class="sticker-item">🍓</span>
+            <span class="sticker-item">🧸</span>
+            <span class="sticker-item">🐱</span>
+            <span class="sticker-item">🐰</span>
+            <span class="sticker-item">🦋</span>
+            <span class="sticker-item">💜</span>
+            <span class="sticker-item">☕</span>
+            <span class="sticker-item">📚</span>
+            <span class="sticker-item">✏️</span>
+            <span class="sticker-item">🎧</span>
+            <span class="sticker-item">🌻</span><span class="sticker-item">🍀</span><span class="sticker-item">🌿</span><span class="sticker-item">🪴</span><span class="sticker-item">🧠</span>
+            <span class="sticker-item">🎯</span><span class="sticker-item">💡</span><span class="sticker-item">📌</span><span class="sticker-item">📝</span><span class="sticker-item">🗓️</span>
+            <span class="sticker-item">✅</span><span class="sticker-item">📖</span><span class="sticker-item">🪻</span><span class="sticker-item">🐣</span><span class="sticker-item">🦕</span>
+            <span class="sticker-item">🐼</span><span class="sticker-item">🍄</span><span class="sticker-item">🪄</span><span class="sticker-item">🪷</span><span class="sticker-item">🧃</span>
+        </div>
+
+        <p class="sticker-section-label">🌸 استيكرات أنمي وكيوت</p>
+        <div class="stickers-grid stickers-grid-img">
+            <span class="sticker-item"><img src="images/stickers/sticker1.png" alt="استيكر"></span>
+            <span class="sticker-item"><img src="images/stickers/sticker2.png" alt="استيكر"></span>
+            <span class="sticker-item"><img src="images/stickers/sticker3.png" alt="استيكر"></span>
+            <span class="sticker-item"><img src="images/stickers/sticker4.png" alt="استيكر"></span>
+            <span class="sticker-item"><img src="images/stickers/sticker5.png" alt="استيكر"></span>
+            <span class="sticker-item"><img src="images/stickers/sticker6.png" alt="استيكر"></span>
+            <span class="sticker-item"><img src="images/stickers/sticker7.png" alt="استيكر"></span>
+            <span class="sticker-item"><img src="images/stickers/sticker8.png" alt="استيكر"></span>
+             <span class="sticker-item"><img src="images/stickers/sticker9.png" alt="استيكر"></span>
+            <span class="sticker-item"><img src="images/stickers/sticker10.png" alt="استيكر"></span>
+            <span class="sticker-item"><img src="images/stickers/sticker11.png" alt="استيكر"></span>
+            <span class="sticker-item"><img src="images/stickers/sticker12.png" alt="استيكر"></span>
+            <span class="sticker-item"><img src="images/stickers/sticker13.png" alt="استيكر"></span>
+            <span class="sticker-item"><img src="images/stickers/sticker14.png" alt="استيكر"></span>
+            <span class="sticker-item"><img src="images/stickers/sticker15.png" alt="استيكر"></span>
+            <span class="sticker-item"><img src="images/stickers/sticker16.png" alt="استيكر"></span>
+            <span class="sticker-item"><img src="images/stickers/sticker17.png" alt="استيكر"></span>
+            <span class="sticker-item"><img src="images/stickers/sticker18.png" alt="استيكر"></span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script type="module" src="firebase.js"></script>
+</body>
+</html>
+

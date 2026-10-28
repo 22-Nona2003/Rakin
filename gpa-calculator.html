@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الحاسبة الأكاديمية | منصة رَكِين</title>
+    <!-- ربط ملف التنسيقات والأيقونات -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="tool-page-body">
+
+        <!-- القائمة الجانبية -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-moon logo-icon"></i>
+                <span class="logo-text">منصة رَكِين</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item" title="الرئيسية"><i class="fas fa-home"></i><span class="nav-text">الرئيسية</span></a>
+            <a href="gpa-calculator.html" class="nav-item active" title="الحاسبة الأكاديمية"><i class="fas fa-calculator"></i><span class="nav-text">الحاسبة الأكاديمية</span></a>
+            <a href="calendar.html" class="nav-item" title="التقويم والجدول"><i class="fas fa-calendar-alt"></i><span class="nav-text">التقويم والجدول</span></a>
+            <a href="notes.html" class="nav-item" title="المذكرات والملخصات"><i class="fas fa-book"></i><span class="nav-text">المذكرات والملخصات</span></a>
+            
+            <a href="pomodoro.html" class="nav-item" title="مؤقت بومودورو"><i class="fas fa-stopwatch"></i><span class="nav-text">مؤقت بومودورو</span></a>
+            <a href="quizzes.html" class="nav-item" title="الألغاز والتحديات"><i class="fas fa-gamepad"></i><span class="nav-text">الألغاز والتحديات</span></a>
+            <a href="calculator.html" class="nav-item" title="الآلة الحاسبة"><i class="fas fa-square-root-variable"></i><span class="nav-text">الآلة الحاسبة</span></a>
+            <a href="math.html" class="nav-item" title="مدرسة الحساب"><i class="fas fa-graduation-cap"></i><span class="nav-text">مدرسة الحساب</span></a>
+            <a href="docs.html" class="nav-item" title="المستندات"><i class="fas fa-file-alt"></i><span class="nav-text">المستندات</span></a>
+            <a href="courses.html" class="nav-item" title="الدورات"><i class="fab fa-youtube"></i><span class="nav-text">الدورات</span></a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="theme-toggle" title="تغيير المظهر">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="user-card" title="طالب">
+                <i class="fas fa-user-circle"></i>
+                <span class="user-name">طالب</span>
+            </div>
+        </div>
+    </aside>
+
+
+    <main class="gpa-page-wrapper">
+        
+        <!-- عنوان الصفحة -->
+        <header class="page-header text-center">
+            <h1><i class="fas fa-calculator"></i> الحاسبة الأكاديمية</h1>
+            <p>احسب المعدل الفصلي، وأضف بياناتك السابقة لمعرفة المعدل التراكمي المتوقع.</p>
+        </header>
+
+        <div class="gpa-grid-container">
+            
+            <!-- القسم الأول: بطاقة الحاسبة -->
+            <section class="gpa-calculator-card glass-card">
+                
+                <div class="gpa-settings">
+                    <label for="gpaScale"><strong>نظام المعدل:</strong></label>
+                    <select id="gpaScale" class="custom-select">
+                        <option value="5">من 5.00 (معظم الجامعات السعودية)</option>
+                        <option value="4">من 4.00 (النظام العالمي والأمريكي)</option>
+                    </select>
+                </div>
+
+                <details class="cumulative-settings">
+                    <summary><i class="fas fa-layer-group"></i> أضف بيانات المعدل التراكمي السابق (اختياري)</summary>
+                    <div class="cumulative-fields">
+                        <label>المعدل السابق <input id="previousGpa" type="number" min="0" max="5" step="0.01" inputmode="decimal" placeholder="مثال: 4.25"></label>
+                        <label>الساعات المجتازة <input id="previousHours" type="number" min="1" step="1" inputmode="numeric" placeholder="مثال: 36"></label>
+                    </div>
+                    <small>أدخل المعدل والساعات معًا، واستخدم بيانات سجلك الأكاديمي وسلم جامعتك.</small>
+                </details>
+
+                <!-- جدول المواد -->
+                <div class="courses-container" id="coursesList">
+                    <div class="course-row">
+                        <input type="text" placeholder="اسم المادة (اختياري)" class="course-name">
+                        
+                        <select class="course-hours">
+                            <option value="1">1 ساعة</option>
+                            <option value="2">2 ساعات</option>
+                            <option value="3" selected>3 ساعات</option>
+                            <option value="4">4 ساعات</option>
+                        </select>
+
+                        <select class="course-grade">
+                            <option value="" disabled selected>التقدير</option>
+                            <option value="A+">+A (ممتاز مرتفع)</option>
+                            <option value="A">A (ممتاز)</option>
+                            <option value="B+">+B (جيد جداً مرتفع)</option>
+                            <option value="B">B (جيد جداً)</option>
+                            <option value="C+">+C (جيد مرتفع)</option>
+                            <option value="C">C (جيد)</option>
+                            <option value="D+">+D (مقبول مرتفع)</option>
+                            <option value="D">D (مقبول)</option>
+                            <option value="F">F (راسب)</option>
+                        </select>
+
+                        <button type="button" class="btn-remove-course" title="حذف المادة">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- أزرار الإجراءات -->
+                <div class="gpa-actions">
+                    <button id="addCourseBtn" class="btn-secondary">
+                        <i class="fas fa-plus"></i> إضافة مادة جديدة
+                    </button>
+                    <button id="calculateGpaBtn" class="btn-primary">
+                        <i class="fas fa-chart-line"></i> احسب المعدل
+                    </button>
+                </div>
+
+                <!-- صندوق النتيجة -->
+                <div class="gpa-result-box hidden" id="gpaResultBox">
+                    <div class="result-score">
+                        <span class="score-label">المعدل الفصلي</span>
+                        <h2 id="finalGpaValue">0.00</h2>
+                        <span id="gpaScaleText">من 5.00</span>
+                    </div>
+                    <p class="result-status" id="gpaStatusText">مؤشر تقديري عام</p>
+                    <div class="cumulative-result hidden" id="cumulativeResult">
+                        <span>المعدل التراكمي المتوقع بعد هذا الفصل</span>
+                        <strong id="cumulativeGpaValue">0.00</strong>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- القسم الثاني: التعليمات والإرشادات -->
+            <aside class="gpa-instructions-card glass-card">
+                <h3><i class="fas fa-lightbulb"></i> كيف تحسب معدلك بنفسك؟</h3>
+                
+                <div class="instruction-item">
+                    <h4>1. الساعات المعتمدة (Credits)</h4>
+                    <p>هي وزن المادة في خطتك الدراسية؛ المواد ذات الـ 3 أو 4 ساعات تؤثر في معدلك أكثر من مواد الساعة الواحدة.</p>
+                </div>
+
+                <div class="instruction-item">
+                    <h4>2. النقاط والتقديرات</h4>
+                    <p>كل تقدير حرفي (+A, A, +B...) يعادل عدداً معيناً من النقاط. تقوم الحاسبة بضرب نقاط التقدير في عدد ساعات المادة.</p>
+                </div>
+
+                <div class="instruction-item">
+                    <h4>3. معادلة المعدل الفصلي</h4>
+                    <p><strong>المعدل = (مجموع النقاط لكل المواد) ÷ (إجمالي الساعات المسجلة)</strong></p>
+                </div>
+
+                <p class="gpa-scale-note"><i class="fas fa-circle-info"></i> سلم النقاط والتقديرات يختلف بين الجامعات؛ القيم هنا شائعة، فراجع دليل جامعتك للتأكد.</p>
+
+                <div class="gpa-tips-box">
+                    <strong>💡 نصيحة رَكِين:</strong>
+                    <p>ركز دائماً على رفع درجاتك في المواد ذات الساعات العالية (3 و 4 ساعات) لأنها المحرك الأساسي لرفع معدلك التراكمي!</p>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- ربط ملف الجافاسكريبت -->
+    <script src="app.js"></script>
+    <script type="module" src="firebase.js"></script>
+</body>
+</html>
+

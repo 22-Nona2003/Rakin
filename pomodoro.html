@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مؤقت بومودورو | منصة رَكِين</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="tool-page-body">
+
+    <!-- القائمة الجانبية -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-moon logo-icon"></i>
+                <span class="logo-text">منصة رَكِين</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item" title="الرئيسية"><i class="fas fa-home"></i><span class="nav-text">الرئيسية</span></a>
+            <a href="gpa-calculator.html" class="nav-item" title="الحاسبة الأكاديمية"><i class="fas fa-calculator"></i><span class="nav-text">الحاسبة الأكاديمية</span></a>
+            <a href="calendar.html" class="nav-item" title="التقويم والجدول"><i class="fas fa-calendar-alt"></i><span class="nav-text">التقويم والجدول</span></a>
+            <a href="notes.html" class="nav-item" title="المذكرات والملخصات"><i class="fas fa-book"></i><span class="nav-text">المذكرات والملخصات</span></a>
+            
+            <a href="pomodoro.html" class="nav-item active" title="مؤقت بومودورو"><i class="fas fa-stopwatch"></i><span class="nav-text">مؤقت بومودورو</span></a>
+            <a href="quizzes.html" class="nav-item" title="الألغاز والتحديات"><i class="fas fa-gamepad"></i><span class="nav-text">الألغاز والتحديات</span></a>
+            <a href="calculator.html" class="nav-item" title="الآلة الحاسبة"><i class="fas fa-square-root-variable"></i><span class="nav-text">الآلة الحاسبة</span></a>
+            <a href="math.html" class="nav-item" title="مدرسة الحساب"><i class="fas fa-graduation-cap"></i><span class="nav-text">مدرسة الحساب</span></a>
+            <a href="docs.html" class="nav-item" title="المستندات"><i class="fas fa-file-alt"></i><span class="nav-text">المستندات</span></a>
+            <a href="courses.html" class="nav-item" title="الدورات"><i class="fab fa-youtube"></i><span class="nav-text">الدورات</span></a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="theme-toggle" title="تغيير المظهر">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="user-card" title="طالب">
+                <i class="fas fa-user-circle"></i>
+                <span class="user-name">طالب</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="pomodoro-wrapper">
+
+        <header class="page-header text-center">
+            <h1><i class="fas fa-stopwatch"></i> مؤقت بومودورو</h1>
+            <p>ركّز 25 دقيقة، خذ استراحة، وكرّر — هذه طريقة بومودورو 🍅</p>
+        </header>
+
+        <!-- بطاقتا الإحصائيات -->
+        <div class="pomo-stats">
+            <div class="pomo-stat-card glass-card">
+                <i class="fas fa-fire"></i>
+                <div>
+                    <span class="stat-num" id="sessionsToday">0</span>
+                    <span class="stat-label">جلسة تركيز اليوم</span>
+                </div>
+            </div>
+            <div class="pomo-stat-card glass-card">
+                <i class="fas fa-hourglass-half"></i>
+                <div>
+                    <span class="stat-num" id="minutesStudied">0</span>
+                    <span class="stat-label">دقيقة تركيز اليوم</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- الحلقة الرئيسية -->
+        <div class="pomo-main-card glass-card">
+
+            <!-- أزرار اختيار الوضع -->
+            <div class="pomo-mode-tabs">
+                <button class="pomo-tab active" data-minutes="25" data-mode="focus">🍅 تركيز</button>
+                <button class="pomo-tab" data-minutes="5" data-mode="short">☕ استراحة قصيرة</button>
+                <button class="pomo-tab" data-minutes="15" data-mode="long">🌿 استراحة طويلة</button>
+            </div>
+
+            <!-- المؤقت الدائري -->
+            <div class="pomo-timer-ring">
+                <svg class="progress-ring" width="260" height="260">
+                    <circle class="ring-bg" cx="130" cy="130" r="118"></circle>
+                    <circle class="ring-progress" id="ringProgress" cx="130" cy="130" r="118"></circle>
+                </svg>
+                <div class="timer-display">
+                    <span id="timerText">25:00</span>
+                    <small id="timerHint">هل أنت مستعد للبدء؟</small>
+                </div>
+            </div>
+
+            <!-- أزرار التحكم -->
+            <div class="pomo-controls">
+                <button class="pomo-btn start" id="startPauseBtn"><i class="fas fa-play"></i> ابدأ</button>
+                <button class="pomo-btn reset" id="resetBtn"><i class="fas fa-rotate-left"></i> إعادة</button>
+            </div>
+
+            <!-- مؤشر الدورة -->
+            <p class="pomo-cycle-hint" id="cycleHint">
+                بعد كل 4 جلسات تركيز تأخذ استراحة طويلة 🌿
+            </p>
+        </div>
+
+    </main>
+
+    <script src="app.js"></script>
+    <script src="pomodoro.js"></script>
+    <script type="module" src="firebase.js"></script>
+</body>
+</html>
+

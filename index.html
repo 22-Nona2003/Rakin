@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رَكِين - ملاذك الدراسي الهادئ</title>
+    <!-- خط Plus Jakarta Sans للعناوين و Cairo للنصوص -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome للإيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 1. القائمة الجانبية الذكية المطوية -->
+    <aside class="sidebar">
+        <!-- الشعار -->
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-moon logo-icon"></i>
+                <span class="logo-text">رَكِين</span>
+            </div>
+        </div>
+
+        <!-- روابط التنقل -->
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" title="الرئيسية">
+                <i class="fas fa-home"></i>
+                <span class="nav-text">الرئيسية</span>
+            </a>
+            <a href="#" class="nav-item" onclick="openTab('calendar')" title="التقويم">
+                <i class="fas fa-calendar-alt"></i>
+                <span class="nav-text">التقويم</span>
+            </a>
+            <a href="#" class="nav-item" onclick="openTab('notes')" title="المذكرات">
+                <i class="fas fa-book"></i>
+                <span class="nav-text">المذكرات</span>
+            </a>
+            <a href="#" class="nav-item" onclick="openTab('stickers')" title="الملصقات">
+                <i class="fas fa-sticky-note"></i>
+                <span class="nav-text">الملصقات</span>
+            </a>
+        </nav>
+
+        <!-- أسفل القائمة الجانبية -->
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="theme-toggle" title="تغيير المظهر">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="user-card" title="طالب">
+                <i class="fas fa-user-circle"></i>
+                <span class="user-name">طالب</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 2. منطقة المحتوى الرئيسية -->
+   <main class="main-wrapper">
+    
+    <!-- الشريط العلوي -->
+    <header class="top-header">
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="ابحث عن أداة، مذكرة، أو حدث...">
+        </div>
+        
+        <div class="header-actions">
+            <div class="user-profile-badge">
+                <span class="user-title">طالب</span>
+                <i class="fas fa-user-circle avatar-icon"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. الجزء العلوي المقسم (البانر في اليمين والمساحة الفارغة في اليسار) -->
+    <div class="dashboard-layout">
+        <!-- البانر محصور هنا فقط -->
+        <div class="main-column">
+            <div class="hero-banner">
+                <div class="hero-content">
+                    <h2>أهلاً بك في رَكِين! ☕✨</h2>
+                    <p>ماذا سننجز سوياً اليوم؟</p>
+                    <div class="hero-quick-links">
+                        <span><i class="fas fa-check-circle"></i> مراجعة الجدول</span>
+                        <span><i class="fas fa-check-circle"></i> المذكرات اليومية</span>
+                    </div>
+                </div>
+
+                <div class="hero-illustration">
+                    <img src="images/student.png" alt="طالب يذاكر">
+                </div>
+            </div>
+        </div>
+
+        <!-- العمود الأيسر الفارغ بجانب البانر -->
+       <div class="side-column">
+    <div class="notifications-card">
+        <div class="card-header-sm">
+            <h4><i class="fas fa-bell"></i> التنبيهات القادمة</h4>
+            <a href="#">الكل</a>
+        </div>
+        
+        <div class="notification-list">
+            <div class="notice-item warning">
+                <i class="fas fa-exclamation-circle"></i>
+                <div class="notice-text">
+                    <h5>تسليم مشروع الشبكات</h5>
+                    <span>اليوم - 11:59 مساءً</span>
+                </div>
+            </div>
+
+            <div class="notice-item info">
+                <i class="fas fa-calendar-check"></i>
+                <div class="notice-text">
+                    <h5>اختبار منتصف الفصل</h5>
+                    <span>الأحد القادم</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+
+    <!-- 2. قسم البطاقات (خارج التقسيم ليمتد بكامل عرض الصفحة) -->
+   <!-- شبكة البطاقات والأدوات (6 بطاقات) -->
+<section class="tools-section">
+    <div class="section-header">
+        <h3>الأدوات الرئيسية</h3>
+    </div>
+
+    <div class="cards-grid">
+        <!-- 1. بطاقة الحاسبة الأكاديمية -->
+        <div class="tool-card" onclick="openTab('calculator')">
+            <div class="card-icon"><i class="fas fa-calculator"></i></div>
+            <h4>الحاسبة الأكاديمية</h4>
+            <p>حساب المعدل الفصلي والتراكمي بسهولة</p>
+        </div>
+
+        <!-- 2. بطاقة التقويم -->
+        <div class="tool-card" onclick="openTab('calendar')">
+            <div class="card-icon"><i class="fas fa-calendar-alt"></i></div>
+            <h4>التقويم والجدول</h4>
+            <p>متابعة الاختبارات والمواعيد الهامة</p>
+        </div>
+
+        <!-- 3. بطاقة المذكرات -->
+        <div class="tool-card" onclick="openTab('notes')">
+            <div class="card-icon"><i class="fas fa-book-open"></i></div>
+            <h4>المذكرات والملخصات</h4>
+            <p>تدوين وتنسيق ملاحظات المواد</p>
+        </div>
+
+        <!-- 4. بطاقة الملصقات -->
+        <div class="tool-card" onclick="openTab('stickers')">
+            <div class="card-icon"><i class="fas fa-sticky-note"></i></div>
+            <h4>الملصقات الذكية</h4>
+            <p>قائمة المهام اليومية والتذكيرات السريعة</p>
+        </div>
+
+        <!-- 5. بطاقة مؤقت بومودورو -->
+        <div class="tool-card" onclick="openTab('pomodoro')">
+            <div class="card-icon"><i class="fas fa-stopwatch"></i></div>
+            <h4>مؤقت بومودورو</h4>
+            <p>جلسات دراسية مركزة وفترات استراحة</p>
+        </div>
+
+        <!-- 6. بطاقة الألغاز والتحديات -->
+        <div class="tool-card" onclick="openTab('quizzes')">
+            <div class="card-icon"><i class="fas fa-gamepad"></i></div>
+            <h4>الألغاز والتحديات</h4>
+            <p>تنشيط الذهن وكسر الروتين أثناء الاستراحة</p>
+        </div>
+    </div>
+</section>
+
+<!-- قسم السلايدر التعريفي الرئيسي -->
+<!-- قسم السلايدر التعريفي الرئيسي بملء المساحة -->
+<section class="main-slider-container">
+    <div class="slider-wrapper">
+        
+        <!-- الشريحة 1: الشعار والترحيب -->
+        <div class="slide active">
+            <div class="slide-content">
+                <div class="slide-text">
+                    <h1 class="brand-logo-text">رَكِــيـنْ</h1>
+                    <h3 class="slide-subtitle">مُسْتَقَرُّك المِثَالِي لِلْتَرْكِيزِ، المُلَاحَظَاتِ، وَإِدَارَةِ الوَقْت ☕🌙</h3>
+                    <p class="slide-description">بِيئَةُ المُذَاكَرَةِ الـمُتَكَاكِلَة لِلطَّالِبِ الـجَامِعِي. نَظَّمْ أَيَّامَك، دَوِّنْ أفكَارَك، وَحَقِّقْ أَهْدَافَك بِهُدُوء.</p>
+                </div>
+                <div class="slide-image">
+                    <div class="brand-badge-box">
+                        <span class="badge-title">رَكِينْ 🌿</span>
+                        <span class="badge-sub">مساحتك الهادئة</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- الشريحة 2: المشكلة والتشتت -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="slide-text">
+                    <h2 class="slide-heading">هل تشعر بالضياع والتشتت بين تراكم المهام وضيق الوقت؟ 📑😰</h2>
+                    <p class="slide-description">هل تتطاير أفكارك وملاحظاتك الدراسية دون أن تجد لها مكاناً يجمعها، ليمضي يومك دون أن تحقق ما أردت؟</p>
+                </div>
+                <div class="slide-image">
+                    <img src="png-transparent-class-learning-child-studying-hard-child-class-hand-thumbnail.png" alt="طالب محتار" class="cutout-img">
+                </div>
+            </div>
+        </div>
+
+        <!-- الشريحة 3: التحول مع ركين -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="slide-text">
+                    <h2 class="slide-heading">تحوّل من فوضى التشتت إلى رزانة الإنجاز ✨</h2>
+                    <p class="slide-description">مع <strong>رَكِين</strong>.. لن تكون رحلتك الأكاديمية مجرد ركض مستمر خلف المواعيد. هنا ستكتشف كيف تحول التشتت إلى هدوء، والضياع إلى إنجاز منظم.</p>
+                </div>
+                <div class="slide-image">
+                    <img src="png-transparent-case-study-student-research-learning-study-skills-student-people-public-relations-business-thumbnail.png" alt="تنظيم وإنجاز" class="cutout-img">
+                </div>
+            </div>
+        </div>
+
+        <!-- الشريحة 4: أدوات ركين والتجربة -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="slide-text">
+                    <h2 class="slide-heading">مرساك الثابت وسط زحمة الأيام 🌿</h2>
+                    <p class="slide-description">لقد صممنا <strong>رَكِين</strong> ليكون مساحتك الخاصة؛ مكان يمنحك أدوات ذكية لتنظيم وقتك، تتبع جدولك، وتدوين ملاحظاتك وخواطرك بطريقة تفاعلية وممتعة تجعل من الدراسة تجربة لطيفة ومريحة للعين.<br><br><strong>ابدأ تنظيم يومك الآن مع رَكِين!</strong></p>
+                </div>
+                <div class="slide-image">
+                    <img src="png-transparent-social-media-marketing-social-media-marketing-business-social-media-marketing-computer-network-search-engine-optimization-company-thumbnail.png" alt="مساحة ركين" class="cutout-img">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- أسهم التحكم -->
+    <button class="slider-btn prev-btn" id="prevBtn" aria-label="السابق"><i class="fas fa-chevron-right"></i></button>
+    <button class="slider-btn next-btn" id="nextBtn" aria-label="التالي"><i class="fas fa-chevron-left"></i></button>
+    
+    <!-- نقاط الترقيم -->
+    <div class="slider-dots" id="sliderDots"></div>
+</section>
+</main>
+
+
+
+<footer class="main-footer">
+    <div class="footer-container">
+        
+        <div class="footer-col brand-col">
+            <h2 class="footer-logo">رَكِــيـنْ</h2>
+            <p class="footer-about">
+                مرساك الأكاديمي الدافيء ومساحتك الخاصة للتنظيم والدراسة؛ نرافق الطالب الجامعي لتحويل التشتت والضياع إلى هدوء وإنجاز منظم.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-title">الأدوات الأكاديمية</h4>
+            <ul class="footer-links">
+                <li><a href="#"><i class="fas fa-book-open"></i> المذكرات والملصقات الذكية</a></li>
+                <li><a href="#"><i class="fas fa-stopwatch"></i> مؤقت بومودورو للتركيز</a></li>
+                <li><a href="#"><i class="fas fa-calculator"></i> الحاسبة الأكاديمية (المعدل)</a></li>
+                <li><a href="#"><i class="fas fa-calendar-alt"></i> التقويم والجدول الدراسي</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-title">الدعم والمساعدة</h4>
+            <ul class="footer-links">
+                <li><a href="#"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a></li>
+                <li><a href="#"><i class="fas fa-envelope"></i> تواصل معنا</a></li>
+                <li><a href="#"><i class="fas fa-lightbulb"></i> شاركنا اقتراحاتك</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-title">الصفحات القانونية</h4>
+            <ul class="footer-links">
+                <li><a href="#">سياسة الخصوصية (Privacy Policy)</a></li>
+                <li><a href="#">شروط الاستخدام (Terms of Service)</a></li>
+                <li><a href="#">إخلاء المسؤولية (Disclaimer)</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="copyright-bar">
+        <div class="copyright-content">
+            <p>جميع الحقوق محفوظة لمنصة <strong>رَكِين</strong> © 2026</p>
+            <p class="made-with">صُمم بـ 💚 ليكون مرساك الأكاديمي الدافيء.</p>
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
